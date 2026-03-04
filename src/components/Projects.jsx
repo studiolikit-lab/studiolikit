@@ -4,24 +4,39 @@ import './Projects.css';
 const projects = [
     {
         id: 1,
-        title: "Project Alpha",
-        category: "Full Stack",
-        description: "A comprehensive web application built with modern technologies.",
-        image: "https://via.placeholder.com/600x400/1a1a1a/00e5ff?text=Project+Alpha"
+        title: "Nike",
+        category: "Brand Film",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
     },
     {
         id: 2,
-        title: "Project Beta",
-        category: "React Native",
-        description: "Mobile application for cross-platform seamless experience.",
-        image: "https://via.placeholder.com/600x400/1a1a1a/7000ff?text=Project+Beta"
+        title: "Adidas",
+        category: "Commercial",
+        image: "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?auto=format&fit=crop&w=800&q=80"
     },
     {
         id: 3,
-        title: "Project Gamma",
-        category: "UI/UX Design",
-        description: "Elegant and user-friendly design interface for enterprise solutions.",
-        image: "https://via.placeholder.com/600x400/1a1a1a/00ffaa?text=Project+Gamma"
+        title: "Puma",
+        category: "Short Film",
+        image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: 4,
+        title: "Apple",
+        category: "Product Video",
+        image: "https://images.unsplash.com/photo-1491933382434-500287f9b54b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: 5,
+        title: "Sony",
+        category: "Brand Film",
+        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: 6,
+        title: "Tesla",
+        category: "Commercial",
+        image: "https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&w=800&q=80"
     }
 ];
 
@@ -29,20 +44,18 @@ const Projects = () => {
     return (
         <section id="projects" className="projects">
             <div className="container">
-                <h2 className="section-title">Selected <span className="highlight">Works</span></h2>
+                <header className="projects-header">
+                    <h2 className="section-header">↓ STUDIO LIKIT© Portfolio.</h2>
+                </header>
                 <div className="projects-grid">
                     {projects.map((project) => (
                         <div key={project.id} className="project-card">
-                            <div className="project-image">
-                                <img src={project.image} alt={project.title} />
-                                <div className="project-overlay">
-                                    <span className="category">{project.category}</span>
+                            <div className="project-image-wrapper">
+                                <img src={project.image} alt={project.title} className="project-img" />
+                                <div className="project-hover-overlay">
+                                    <h3 className="project-brand-logo">{project.title}</h3>
+                                    <span className="project-cat-label">{project.category}</span>
                                 </div>
-                            </div>
-                            <div className="project-info">
-                                <h3>{project.title}</h3>
-                                <p>{project.description}</p>
-                                <a href="#" className="project-link">Learn More &rarr;</a>
                             </div>
                         </div>
                     ))}
