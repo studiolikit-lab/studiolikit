@@ -46,6 +46,7 @@ const projects = [
 const Projects = () => {
 
     const [videos, setVideos] = useState([]);
+    const [selectedVideo, setSelectedVideo] = useState(null);
 
     const fetchVideos = async () => {
         const q = query(collection(db, "videos"), orderBy("createdAt", "desc"));
@@ -63,6 +64,15 @@ const Projects = () => {
         fetchVideos();
     }, []);
 
+    const getEmbedUrl = (url) => {
+        if (!url) return '';
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11)
+            ? `https://www.youtube.com/embed/${match[2]}?autoplay=1`
+            : url;
+    };
+
     return (
         <section id="projects" className="projects">
             <div className="container">
@@ -71,7 +81,11 @@ const Projects = () => {
                 </header>
                 <div className="projects-grid">
                     {videos.map((video) => (
-                        <div key={video.id} className="project-card">
+                        <div
+                            key={video.id}
+                            className="project-card"
+                            onClick={() => setSelectedVideo(video)}
+                        >
                             <div className="project-image-wrapper">
                                 <img src={video.thumbnailUrl} alt={video.title} className="project-img" />
                                 <div className="project-hover-overlay">
@@ -83,6 +97,28 @@ const Projects = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Video Modal */}
+            {selectedVideo && (
+                <div className="video-modal-overlay" onClick={() => setSelectedVideo(null)}>
+                    <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="close-modal-btn" onClick={() => setSelectedVideo(null)}>×</button>
+                        <div className="video-iframe-container">
+                            <iframe
+                                src={getEmbedUrl(selectedVideo.url)}
+                                title={selectedVideo.title}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                        <div className="video-info">
+                            <h3>{selectedVideo.title}</h3>
+                            <p>{selectedVideo.category}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };
