@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Projects.css';
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 const projects = [
     {
@@ -40,7 +42,27 @@ const projects = [
     }
 ];
 
+
 const Projects = () => {
+
+    const [videos, setVideos] = useState([]);
+
+    const fetchVideos = async () => {
+        const q = query(collection(db, "videos"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        const videoList = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        setVideos(videoList);
+    };
+
+    useEffect(() => {
+        fetchVideos();
+    }, []);
+
     return (
         <section id="projects" className="projects">
             <div className="container">
@@ -48,13 +70,13 @@ const Projects = () => {
                     <h2 className="section-header">↓ STUDIO LIKIT© Portfolio.</h2>
                 </header>
                 <div className="projects-grid">
-                    {projects.map((project) => (
-                        <div key={project.id} className="project-card">
+                    {videos.map((video) => (
+                        <div key={video.id} className="project-card">
                             <div className="project-image-wrapper">
-                                <img src={project.image} alt={project.title} className="project-img" />
+                                <img src={video.thumbnailUrl} alt={video.title} className="project-img" />
                                 <div className="project-hover-overlay">
-                                    <h3 className="project-brand-logo">{project.title}</h3>
-                                    <span className="project-cat-label">{project.category}</span>
+                                    <h3 className="project-brand-logo">{video.title}</h3>
+                                    <span className="project-cat-label">{video.category}</span>
                                 </div>
                             </div>
                         </div>
