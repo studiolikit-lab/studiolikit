@@ -1,0 +1,87 @@
+.project-card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: #000;
+}
+
+/* Trendy Play Button Hover Effect */
+.project-card:hover .project-img {
+    transform: scale(1.08);
+    filter: brightness(0.6);
+}
+
+.project-card:hover .project-card-title {
+    color: var(--accent-color, #fff);
+}
+
+.project-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
+    background: #000;
+    overflow: hidden;
+}
+
+.project-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-play-icon svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+}
+
+.project-card:hover .project-play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.project-details {
+    padding: 1.25rem 0.5rem;
+    background: transparent;
+}
+
+.project-card-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.project-card-category {
+    color: var(--text-secondary, #888);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
