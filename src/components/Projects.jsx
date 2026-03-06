@@ -8,6 +8,7 @@ import VideoModal from './VideoModal';
 
 const Projects = () => {
     const [videos, setVideos] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("ALL");
 
@@ -23,15 +24,28 @@ const Projects = () => {
         setVideos(videoList);
     };
 
+    const fetchCategories = async () => {
+        const q = query(collection(db, "categories"), orderBy("order", "asc"));
+        const querySnapshot = await getDocs(q);
+
+        const categoryList = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        setCategories(categoryList);
+    }
+
     useEffect(() => {
         fetchVideos();
+        fetchCategories();
     }, []);
 
-    const categories = ["ALL", ...new Set(videos.map(v => v.category))];
+    const allCategories = [{ id: "ALL", name: "ALL" }, ...categories];
 
     const filteredVideos = selectedCategory === "ALL"
         ? videos
-        : videos.filter(v => v.category === selectedCategory);
+        : videos.filter(v => v.categoryId === selectedCategory);
 
     return (
         <section id="projects" className="projects">
@@ -41,7 +55,7 @@ const Projects = () => {
                 </header>
 
                 <CategoryTabs
-                    categories={categories}
+                    categories={allCategories}
                     selectedCategory={selectedCategory}
                     onSelectCategory={setSelectedCategory}
                 />

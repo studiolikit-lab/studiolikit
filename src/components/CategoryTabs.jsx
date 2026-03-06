@@ -6,11 +6,11 @@ const CategoryTabs = ({ categories, selectedCategory, onSelectCategory }) => {
         <div className="category-tabs">
             {categories.map((category) => (
                 <button
-                    key={category}
-                    className={`tab-btn ${selectedCategory === category ? 'active' : ''}`}
-                    onClick={() => onSelectCategory(category)}
+                    key={category.id}
+                    className={`tab-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                    onClick={() => onSelectCategory(category.id)}
                 >
-                    {category}
+                    {category.name}
                 </button>
             ))}
         </div>
