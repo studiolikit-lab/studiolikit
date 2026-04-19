@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Layout.css';
 
 const Layout = ({ children }) => {
@@ -10,7 +11,9 @@ const Layout = ({ children }) => {
         <div className={`layout ${isMenuOpen ? 'menu-open' : ''}`}>
             <nav className="navbar">
                 <div className="container nav-content">
-                    <div className="logo">STUDIO LIKIT</div>
+                    <div className="logo">
+                        <Link to="/" onClick={() => setIsMenuOpen(false)}>STUDIO LIKIT</Link>
+                    </div>
                     <button className={`hamburger ${isMenuOpen ? 'is-active' : ''}`} onClick={toggleMenu}>
                         <span className="line"></span>
                         <span className="line"></span>
@@ -22,8 +25,8 @@ const Layout = ({ children }) => {
             <aside className={`side-menu ${isMenuOpen ? 'active' : ''}`}>
                 <div className="side-menu-content">
                     <ul className="side-nav-links">
-                        <li><a href="#projects" onClick={toggleMenu}>WORK</a></li>
-                        <li><a href="#about" onClick={toggleMenu}>ABOUT</a></li>
+                        <li><Link to="/" onClick={toggleMenu}>WORK</Link></li>
+                        <li><Link to="/about" onClick={toggleMenu}>ABOUT</Link></li>
                         <li><a href="#contact" onClick={toggleMenu}>CONTACT</a></li>
                     </ul>
                 </div>
