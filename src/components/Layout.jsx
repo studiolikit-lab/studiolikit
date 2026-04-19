@@ -26,8 +26,7 @@ const Layout = ({ children }) => {
                 <div className="side-menu-content">
                     <ul className="side-nav-links">
                         <li><Link to="/" onClick={toggleMenu}>WORK</Link></li>
-                        <li><Link to="/about" onClick={toggleMenu}>ABOUT</Link></li>
-                        <li><a href="#contact" onClick={toggleMenu}>CONTACT</a></li>
+                        <li><Link to="/contact" onClick={toggleMenu}>CONTACT</Link></li>
                     </ul>
                 </div>
             </aside>

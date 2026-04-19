@@ -1,35 +1,35 @@
-.about {
+.contact {
     padding: 10rem 0;
     background-color: #000000;
     color: var(--text-primary);
     border-bottom: 1px solid var(--border-color);
 }
 
-.about-grid {
+.contact-grid {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
 }
 
-.about-logo {
+.contact-logo {
     width: 150px;
     height: auto;
     margin-bottom: 1rem;
 }
 
-.about-logo img {
+.contact-logo img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.about-header {
+.contact-header {
     max-width: 800px;
     width: 100%;
 }
 
-.about-subtitle {
+.contact-subtitle {
     font-size: 0.8rem;
     letter-spacing: 4px;
     color: var(--text-secondary);
@@ -37,7 +37,7 @@
     margin-bottom: 1rem;
 }
 
-.about-title {
+.contact-title {
     font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700;
     line-height: 1;
@@ -45,13 +45,13 @@
     letter-spacing: -2px;
 }
 
-.about-divider {
+.contact-divider {
     width: 60px;
     height: 1px;
     background-color: var(--accent-color);
 }
 
-.about-content {
+.contact-content {
     width: 100%;
     max-width: 1000px;
 }
@@ -149,7 +149,7 @@
 }
 
 @media (max-width: 768px) {
-    .about {
+    .contact {
         padding: 5rem 0;
     }
 
