@@ -28,8 +28,8 @@ const VideoModal = ({ video, onClose }) => {
                     ></iframe>
                 </div>
                 <div className="video-info">
-                    <h3>{video.title}</h3>
-                    <p>{video.category}</p>
+                    <h3 className="modal-video-title">{video.title}</h3>
+                    {video.description && <p className="modal-video-description">{video.description}</p>}
                 </div>
             </div>
         </div>

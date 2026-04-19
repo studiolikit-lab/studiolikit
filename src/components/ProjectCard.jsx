@@ -14,6 +14,7 @@ const ProjectCard = ({ video, onClick }) => {
             </div>
             <div className="project-details">
                 <h3 className="project-card-title">{video.title}</h3>
+                {video.description && <p className="project-card-description">{video.description}</p>}
                 <p className="project-card-category">{video.category}</p>
             </div>
         </div>
