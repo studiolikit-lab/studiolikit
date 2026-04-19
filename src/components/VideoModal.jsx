@@ -6,7 +6,8 @@ const VideoModal = ({ video, onClose }) => {
 
     const getEmbedUrl = (url) => {
         if (!url) return '';
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        // shorts/ 형식을 포함하도록 정규식 업데이트
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         const match = url.match(regExp);
         return (match && match[2].length === 11)
             ? `https://www.youtube.com/embed/${match[2]}?autoplay=1`
